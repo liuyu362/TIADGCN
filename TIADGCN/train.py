@@ -216,38 +216,6 @@ def main():
         train_wmape = []
 
         t1 = time.time()
-        # dataloader['train_loader'].shuffle()
-        #
-        # noise_mean = 10  # 均值为10
-        # noise_var = 500  # 方差为500
-        # noise_proportion = 0.6  # 添加噪声的比例（例如，20%）
-        #
-        # for iter, (x, y) in enumerate(dataloader["train_loader"].get_iterator()):
-        #     # 将数据转换为numpy数组以便处理
-        #     x_np = np.array(x)  # x的维度是 [64, 12, 170, 3]
-        #
-        #     # 随机选择要添加噪声的样本索引（例如20%的样本）
-        #     num_samples = x_np.shape[0]
-        #     noise_sample_indices = random.sample(range(num_samples), int(num_samples * noise_proportion))
-        #
-        #     # 在最后一个维度的第一个通道（索引为0的位置）添加噪声
-        #     x_noisy = x_np.copy()
-        #     noise = np.random.normal(noise_mean, np.sqrt(noise_var), x_noisy[noise_sample_indices, :, :, 0].shape)
-        #     x_noisy[noise_sample_indices, :, :, 0] += noise
-        #
-        #     # 将添加噪声后的数据转换为Tensor
-        #     trainx = torch.Tensor(x_noisy).to(device)  # [64, 12, 170, 3]
-        #     trainx = trainx.transpose(1, 3)  # 调整维度顺序，具体操作取决于模型的输入要求
-        #
-        #     # 保持训练标签不变
-        #     trainy = torch.Tensor(y).to(device)
-        #     trainy = trainy.transpose(1, 3)
-        #
-        #     metrics = engine.train(trainx, trainy[:, 0, :, :])
-        #     train_loss.append(metrics[0])
-        #     train_mape.append(metrics[1])
-        #     train_rmse.append(metrics[2])
-        #     train_wmape.append(metrics[3])
         for iter, (x, y) in enumerate(dataloader["train_loader"].get_iterator()):
             trainx = torch.Tensor(x).to(device)
             trainx = trainx.transpose(1, 3)
